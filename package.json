@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build:prod": "ng build --configuration production --base-href /web-personal-angular/",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
     "test": "ng test",
     "serve:ssr:web-personal-angular": "node dist/web-personal-angular/server/server.mjs"
   },
