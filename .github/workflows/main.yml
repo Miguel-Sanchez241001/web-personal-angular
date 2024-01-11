@@ -1,0 +1,47 @@
+name: GitHub Pages
+
+
+# Cuando se va a ejecutar este Action en este aso para un push en la rama main
+on:
+  push:
+    branches:
+    - main
+
+
+# Tareas
+jobs:
+
+
+
+
+  build:
+    runs-on: ubuntu-latest
+
+
+    # Secuencia de tarea a ejecutar en el job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3.7.0
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm run test:headless
+
+    - name: Build app bundle
+      run: npm run build:prod
+
+    - name: Deploy to pages
+      uses: crazy-max/ghaction-github-pages@v4.0.0
+      with:
+        build_dir: dist/web-personal-angular
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
